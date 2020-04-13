@@ -82,6 +82,7 @@ centos() {
 	echo "export GOROOT=/usr/local/go" >> /etc/profile.d/goenv.sh;
 	echo "export GOPATH=$HOME/go" >> /etc/profile.d/goenv.sh;
 	echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" >> /etc/profile.d/goenv.sh;
+	source /etc/profile.d/goenv.sh;
 	echo "$RED""go-cve-dictionary + goval-dictionary installing...""$NC";
 	mkdir /var/log/vuls;
 	chown $ID /var/log/vuls
