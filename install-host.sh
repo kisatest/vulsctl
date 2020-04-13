@@ -147,7 +147,7 @@ case $distro in
 		apt-get $OPT install sqlite git gcc make wget
 		ubuntu;;
 	"centos")
-		yum install $OPT install sqlite git gcc make wget
+		yum $OPT install sqlite git gcc make wget
 		centos;;
 	*) # we can add more install command for each distros.
 		echo "\"$distro\" is not supported distro, so please install packages manually." ;;
