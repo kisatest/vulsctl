@@ -210,7 +210,7 @@ case $distro in
 		yum install $OPT sqlite git gcc make wget
 		centos;;
 	"alpine")
-		apk add $OPT sqlite git gcc make wget
+		apk add sqlite git gcc make wget
 		alpine;;
 	*) # we can add more install command for each distros.
 		echo "\"$distro\" is not supported distro, so please install packages manually." ;;
