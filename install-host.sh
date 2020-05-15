@@ -131,11 +131,9 @@ centos() {
 
 alpine() {
 	echo "$RED""Finding latest version of Go for AMD64...""$NC";
-	url="$(wget -qO- https://golang.org/dl/ | grep -oP 'https:\/\/dl\.google\.com\/go\/go([0-9\.]+)\.linux-amd64\.tar\.gz' | head -n 1 )";
-	latest="$(echo $url | grep -oP 'go[0-9\.]+' | grep -oP '[0-9\.]+' | head -c -2 )";
-	wget "${url}";
+	wget https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz;
 	echo "$RED""[!] Download successful : $url""$NC";
-	tar -C /usr/local -xzf go$latest.linux-amd64.tar.gz;
+	tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz;
 	mkdir $HOME/go;
 	export GOROOT=/usr/local/go;
 	export GOPATH=$HOME/go;
