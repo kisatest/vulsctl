@@ -201,7 +201,7 @@ OPT="${@}"
 distro=$(grep "^ID=" /etc/os-release | cut -d\= -f2 | sed -e 's/"//g')
 
 case $distro in
-	"ubuntu")
+	"ubuntu" | "debian")
 		apt-get $OPT install sqlite git gcc make wget
 		ubuntu;;
 	"rhel" | "centos")
