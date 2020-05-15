@@ -131,7 +131,7 @@ centos() {
 
 alpine() {
 	echo "$RED""Finding latest version of Go for AMD64...""$NC";
-	wget https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz;
+	wget https://dl.google.com/go/go1.14.3.src.tar.gz;
 	echo "$RED""[!] Download successful : $url""$NC";
 	tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz;
 	mkdir $HOME/go;
@@ -208,7 +208,7 @@ case $distro in
 		yum install $OPT sqlite git gcc make wget
 		centos;;
 	"alpine")
-		apk add sqlite git gcc make wget
+		# apk add sqlite git gcc make wget
 		alpine;;
 	*) # we can add more install command for each distros.
 		echo "\"$distro\" is not supported distro, so please install packages manually." ;;
