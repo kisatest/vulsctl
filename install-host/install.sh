@@ -4,14 +4,15 @@ RED='\033[0;31m';
 NC='\033[0m';
 
 ID=$(whoami);
+GO_INSTALLED=$(command -v go 2> /dev/null);
 
-go() {
-	if command -v go &> /dev/null
-	then
-		echo "Go is already installed."
-		return
-	fi
+install_go() {
+	if [ ! $GO_INSTALLED = "" ]; then
+            	echo "Go is already installed."
+                return
+        fi
 
+	echo -e "\n${RED} [!] Go is not installed. Proceed to install...${NC}\n"
 	url="https://golang.org/dl/$1"
 	wget "${url}";
 	echo -e "$RED""[!] Download successful : $url""$NC";
@@ -24,7 +25,6 @@ go() {
 	echo "export GOPATH=$HOME/go" >> "$HOME"/.profile;
 	echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" >> "$HOME"/.profile;
 }
-
 
 # Download latest Golang shell script
 # https://gist.github.com/n8henrie/1043443463a4a511acf98aaa4f8f0f69
@@ -113,18 +113,18 @@ case $distro in
 		apt-get update
 		apt-get $OPT install sqlite git gcc make wget
 		filename="$(wget -qO- https://golang.org/dl/ | grep -oP 'go([0-9\.]+)\.linux-amd64\.tar\.gz' | head -n 1)";
-		go $filename
+		install_go $filename
 		install_vuls;;
 	"raspbian")
 		apt-get update
 		apt-get $OPT install sqlite git gcc make wget
 		filename="$(wget -qO- https://golang.org/dl/ | grep -oP 'go([0-9\.]+)\.linux-armv6l.tar\.gz' | head -n 1)";
-		go $filename
+		install_go $filename
 		install_vuls;;
 	"rhel" | "centos")
 		yum $OPT install sqlite git gcc make wget
 		filename="$(wget -qO- https://golang.org/dl/ | grep -oP 'go([0-9\.]+)\.linux-amd64\.tar\.gz' | head -n 1)";
-		go $filename
+		install_go $filename
 		install_vuls;;
 	*) # we can add more install command for each distros.
 		echo "\"$distro\" is not supported distro, so please install packages manually." ;;
