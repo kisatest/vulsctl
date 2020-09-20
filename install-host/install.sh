@@ -47,7 +47,7 @@ install_vuls() {
 	echo -e "$RED""Vuls installing...""$NC";
 	mkdir -p $GOPATH/src/github.com/future-architect;
 	cd $GOPATH/src/github.com/future-architect;
-	git clone -b add-report-csv-formatlist_v2 https://github.com/gy741/vuls.git;
+	git clone -b add-report-csv-formatlist_v3 https://github.com/gy741/vuls.git;
 	cd vuls;
 	make install; 
 
